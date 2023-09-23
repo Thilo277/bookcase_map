@@ -60,6 +60,8 @@
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
+  
+    
 
   <?php
 
@@ -117,7 +119,7 @@
 
     if ($_GET['latlng'] != '') {
       $myfile = fopen("newfile.txt", "a");
-      $txt = 'var marker36 = L.marker([' . $_GET['latlng'] . ']).addTo(map);';
+      $txt = 'var marker36 = L.marker([' . $_GET['latlng'] . ']).addTo(map); marker36.bindPopup("'.$_GET['latlng'].'");';
       fwrite($myfile, $txt . "\n");
       fclose($myfile);
       
@@ -127,7 +129,7 @@
     echo "}map.on('click', onMapClick);</script>";
 
     if($_GET['latlng'] != '') {
-      echo '<meta http-equiv="refresh" content="1;url=/index.php" />';
+      echo '<meta http-equiv="refresh" content="1;url=/index.php?latlng=" />';
     }
     ?>
   
